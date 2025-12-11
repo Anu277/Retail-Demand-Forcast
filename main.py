@@ -22,6 +22,10 @@ app.add_middleware(
 df = pd.read_csv("sales_history.csv")
 df['sale_date'] = pd.to_datetime(df['sale_date'])
 
+@app.get("/")
+def home():
+    return {"message": "Hello! Welcome to Retail Demand Forecasting API"}
+
 @app.get("/forecast")
 def forecast(days: int = 7):
     today = datetime.today().date()
