@@ -84,8 +84,6 @@ def forecast(days: int = 7):
 # MAIN ENTRY POINT
 # -------------------------
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser()
-    parser.add_argument("--port", type=int, default=2727, help="Port to run the API on")
-    args = parser.parse_args()
-
-    uvicorn.run("main:app", host="0.0.0.0", port=args.port, reload=True)
+    import os
+    port = int(os.environ.get("PORT", 8000))
+    uvicorn.run("main:app", host="0.0.0.0", port=port, reload=True)
